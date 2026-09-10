@@ -2,16 +2,25 @@ import express from "express"
 import morgan from "morgan"
 import dotenv from "dotenv"
 import proxy from "express-http-proxy";
+import cors from "cors"
+import cookieParser from "cookie-parser";
 dotenv.config()
 
 const app = express();
-
+app.use(express.json())
+app.use(cors({
+    origin:process.env.FRONTEND_SERVER_URL,
+    credentials:true
+}))
+app.use(cookieParser())
 const PORT = process.env.PORT || 4000
 
 
 app.get('/', (req, res) =>{
     res.json({message:"gateway route"})
 })
+
+//router
 
 //Setup proxy routes using environment variables
 // Example for Auth microservice
