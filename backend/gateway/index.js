@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import proxy from "express-http-proxy";
 import cors from "cors"
 import cookieParser from "cookie-parser";
+import { authorised } from "./middleware/auth.middleware.js";
 dotenv.config()
 
 const app = express();
@@ -24,7 +25,7 @@ app.get('/', (req, res) =>{
 
 //Setup proxy routes using environment variables
 // Example for Auth microservice
-app.use('/api/v1/auth', proxy(process.env.AUTH_SERVICE_URL || 'http://localhost:8001'));
+app.use('/api/v1/auth/me',authorised, proxy(process.env.AUTH_SERVICE_URL || 'http://localhost:8001'));
 
 // Example for Agent / LangGraph microservice
 app.use('/api/v1/agents', proxy(process.env.AGENT_SERVICE_URL || 'http://localhost:8002'));

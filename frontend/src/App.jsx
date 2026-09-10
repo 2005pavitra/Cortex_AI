@@ -1,6 +1,14 @@
+import { getCurrentUser } from './features/getCurrentUser'
 import Home from './pages/Home'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(()=>{
+    const getUser = async() =>{
+      await getCurrentUser
+    }
+    getUser
+  })
   return <Home />
 }
 
