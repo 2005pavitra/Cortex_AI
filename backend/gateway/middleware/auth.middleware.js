@@ -9,7 +9,7 @@ export const authorised = async (req, res, next) => {
             })
         }
 
-        const sessionDataString = await redis.get(`session: $sessionId`)
+        const sessionDataString = await redis.get(`session: ${sessionId}`)
         if (!sessionDataString) {
             return res.status(400).json({
                 message: "Session expired"
