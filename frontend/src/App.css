@@ -1,0 +1,123 @@
+.home-page {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    isolation: isolate;
+    background: #0b0d12;
+    color: #f5f7fb;
+}
+
+.home-content {
+    width: min(100%, 38rem);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    animation: appear 700ms ease-out both;
+}
+
+.eyebrow {
+    margin: 0 0 1.25rem;
+    color: #76e4c1;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+h1 {
+    max-width: 35rem;
+    margin: 0 auto;
+    font-size: clamp(2.15rem, 8vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+}
+
+.home-description {
+    max-width: 28rem;
+    margin: 1.5rem auto 2rem;
+    color: #9da5b5;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.google-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 3.25rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #313845;
+    border-radius: 0.5rem;
+    background: #f5f7fb;
+    color: #101319;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.google-button:hover {
+    background: #ffffff;
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.google-button:focus-visible {
+    outline: 3px solid #76e4c1;
+    outline-offset: 4px;
+}
+
+.google-mark {
+    width: 1.45rem;
+    height: 1.45rem;
+    flex: 0 0 auto;
+}
+
+.home-grid {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    opacity: 0.22;
+    background-image: linear-gradient(#26303a 1px, transparent 1px),
+        linear-gradient(90deg, #26303a 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: linear-gradient(to bottom, transparent, black 35%, transparent 90%);
+}
+
+.home-glow {
+    position: absolute;
+    z-index: -1;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    background: #174e4d;
+    filter: blur(110px);
+    opacity: 0.42;
+    transform: translate(30%, 25%);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 520px) {
+    .home-page {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: clamp(2.7rem, 15vw, 4rem);
+    }
+}
