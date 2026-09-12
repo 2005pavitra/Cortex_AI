@@ -1,16 +1,7 @@
-# Environment files and local secrets
+node_modules/
 .env
 .env.*
 !.env.example
 serviceAccountKey.json
-
-# Dependencies and build output
-node_modules/
 dist/
-dist-ssr/
-
-# Logs and local tooling
 *.log
-.vscode/
-.idea/
-.DS_Store

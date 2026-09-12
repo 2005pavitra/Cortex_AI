@@ -25,7 +25,20 @@ app.get('/', (req, res) =>{
 
 //Setup proxy routes using environment variables
 // Example for Auth microservice
-app.use('/api/v1/auth',authorised, proxy(process.env.AUTH_SERVICE_URL || 'http://localhost:8001'));
+// Public route
+app.use(
+  '/api/v1/auth/login',
+  proxy(process.env.AUTH_SERVICE_URL, {
+    proxyReqPathResolver: () => '/login'
+  })
+)
+
+// Protected routes
+app.use(
+    '/api/v1/auth',
+    authorised,
+    proxy(process.env.AUTH_SERVICE_URL)
+);
 
 // Example for Agent / LangGraph microservice
 app.use('/api/v1/agents', proxy(process.env.AGENT_SERVICE_URL || 'http://localhost:8002'));

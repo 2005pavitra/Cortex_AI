@@ -9,7 +9,7 @@ export const authorised = async (req, res, next) => {
             })
         }
 
-        const sessionDataString = await redis.get(`session: ${sessionId}`)
+        const sessionDataString = await redis.get(`session-${sessionId}`)
         if (!sessionDataString) {
             return res.status(400).json({
                 message: "Session expired"
@@ -21,6 +21,8 @@ export const authorised = async (req, res, next) => {
         req.headers["x-user-id"] = userSession.userId;
         req.headers["x-user-email"] = userSession.email;
         req.headers["x-user-name"] = userSession.name;
+
+        next();
     } catch (error) {
         console.log("Auth gateway error", error)
         return res.status(500).json({ success: false, error: "Internal gateway auth failure" });

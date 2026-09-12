@@ -1,14 +1,15 @@
 import { getCurrentUser } from './features/getCurrentUser'
 import Home from './pages/Home'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 function App() {
-  useEffect(()=>{
-    const getUser = async() =>{
-      await getCurrentUser
-    }
-    getUser
-  })
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    getCurrentUser(dispatch)
+  }, [dispatch])
+
   return <Home />
 }
 
