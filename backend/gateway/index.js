@@ -40,11 +40,10 @@ app.use(
     proxy(process.env.AUTH_SERVICE_URL)
 );
 
-// Example for Agent / LangGraph microservice
-app.use('/api/v1/agents', proxy(process.env.AGENT_SERVICE_URL || 'http://localhost:8002'));
-
-// Example for RAG microservice
-app.use('/api/v1/rag', proxy(process.env.RAG_SERVICE_URL || 'http://localhost:8003'));
+app.use('/api/v1/chat',
+    authorised,
+    proxy(process.env.CHAT_SERVICE_URL)
+)
 
 
 app.listen(PORT, () =>{
