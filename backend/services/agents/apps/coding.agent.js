@@ -1,4 +1,6 @@
+import { invokeModel } from "../config/llmModels.js";
+
 export const coding_agent = async (state) => ({
     agent: "coding",
-    aiResponse: `Coding request received. I can help break down, implement, or debug: ${state.prompt}`
+    aiResponse: await invokeModel("coding", `Act as a senior software engineer. Solve or explain this coding request clearly:\n${state.prompt}`)
 });
